@@ -17,10 +17,12 @@ tzdata = "==2025.2"
 urllib3 = "==2.5.0"
 scikit-learn = "==1.7.2"
 dotenv = "==0.9.9"
+matplotlib = "==3.10.7"
 
 [dev-packages]
 pytest = "==8.4.2"
 black = "==25.9.0"
+isort = "==7.0.0"
 
 [requires]
 python_version = "3.14"

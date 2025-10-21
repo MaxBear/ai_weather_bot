@@ -1,10 +1,11 @@
-import requests
-import pandas as pd
-from datetime import date, timedelta, datetime
-import time
-import logging
 import http
+import logging
 import os
+import time
+from datetime import date, datetime, timedelta
+
+import pandas as pd
+import requests
 from dotenv import load_dotenv
 
 logging.basicConfig(level=logging.DEBUG)
@@ -55,9 +56,6 @@ def getWeatherForecast(data, dt, end_dt, loc):
                         d = "0"
                     data[h].append(int(d))
                     if h == "time_epoch":
-                        data["datetime"].append(
-                            datetime.fromtimestamp(d).strftime("%Y-%m-%d %H:%M:%S")
-                        )
                         if last_epoch is None or (
                             last_epoch is not None and d > last_epoch
                         ):
@@ -81,7 +79,7 @@ def getWeatherForecast(data, dt, end_dt, loc):
 # Documentation for weather API schema
 # https://www.weatherapi.com/docs/
 def readAndSave(num_days_from_now=-365):
-    data = {"datetime": []}
+    data = {}
     for h in header_int:
         data[h] = []
     for h in header_float:
@@ -117,8 +115,6 @@ def readAndSave(num_days_from_now=-365):
             "time_epoch"
         ].agg("count")
     )
-
-    data["date"] = pd.to_datetime(data["datetime"])
 
     csv_fname = f"data/weather_data_{d0.strftime("%Y-%m-%d")}_{datetime.fromtimestamp(last_dt).strftime("%Y-%m-%d")}.csv"
     df.to_csv(csv_fname, index=False)

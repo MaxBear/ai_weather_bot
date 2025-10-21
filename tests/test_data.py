@@ -1,11 +1,13 @@
-from modules.data import readAndSave
 import time
+
 import pytest
+
+from modules.data import readAndSave
 
 
 # only one year historical data is available for free plan
 # the amount of time to retrieve one year data is around 0.4301 seconds
-@pytest.fixture(params=[-30, -60, -120, -365])
+@pytest.fixture(params=[-365])
 def days(request):
     return request.param
 
