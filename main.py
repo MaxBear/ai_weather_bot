@@ -1,4 +1,4 @@
-from weather import read
+from modules.data import readAndSave
 
 if __name__ == "__main__":
-    read(num_days_from_now=-365)
+    pf = readAndSave(num_days_from_now=-365)
