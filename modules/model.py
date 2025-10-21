@@ -86,6 +86,7 @@ class bot:
                 "temp_c",
                 "wind_kph",
                 "pressure_mb",
+                "precip_mm",
                 "snow_cm",
                 "avghumidity",
                 "gust_kph",
